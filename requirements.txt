@@ -1,0 +1,10 @@
+streamlit
+uvicorn
+fastapi
+python-dotenv
+langchain_groq
+langgraph
+ipython
+langchain_community
+feedparser
+sentence_transformers

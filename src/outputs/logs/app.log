@@ -1,0 +1,27 @@
+2025-07-14 00:50:13,470 [INFO] [TopicFinder] Agent initialized
+2025-07-14 00:50:13,603 [INFO] [DeepResearcher] Agent initialized
+2025-07-14 00:50:13,718 [INFO] [NewsletterWriter] Agent initialized
+2025-07-14 00:50:13,719 [INFO] [Orchestrator] Agent initialized
+2025-07-14 00:50:13,720 [INFO] [Orchestrator] Building graph...
+2025-07-14 00:50:13,776 [INFO] [Orchestrator] Invoking TopicFinder graph...
+2025-07-14 00:50:13,777 [INFO] [TopicFinder] Building graph...
+2025-07-14 00:50:21,355 [INFO] [TopicFinder] Executing tool: extract_titles_from_rss with args: {'urls': ['https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml', 'https://www.technologyreview.com/feed/', 'https://venturebeat.com/category/ai/feed/', 'https://thegradient.pub/rss/']}
+
+
+2025-07-14 00:50:21,362 [INFO] [TopicFinder] Tool Call: {'name': 'extract_titles_from_rss', 'args': {'urls': ['https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml', 'https://www.technologyreview.com/feed/', 'https://venturebeat.com/category/ai/feed/', 'https://thegradient.pub/rss/']}, 'id': '55zpjtjbq', 'type': 'tool_call'}
+2025-07-14 00:50:22,075 [INFO] [Orchestrator] Invoking DeepResearcher graph...
+2025-07-14 00:50:22,075 [INFO] [DeepResearcher] Building graph...
+2025-07-14 00:50:47,555 [INFO] [DeepResearcher] Executing tool: extract_news_from_rss with args: {'feed_urls': ['https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml', 'https://www.technologyreview.com/feed/', 'https://venturebeat.com/category/ai/feed/', 'https://thegradient.pub/rss/'], 'threshold': 0.5, 'topic': 'AI Understanding Language'}
+
+
+2025-07-14 00:50:47,556 [INFO] [DeepResearcher] Tool Call: {'name': 'extract_news_from_rss', 'args': {'feed_urls': ['https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml', 'https://www.technologyreview.com/feed/', 'https://venturebeat.com/category/ai/feed/', 'https://thegradient.pub/rss/'], 'threshold': 0.5, 'topic': 'AI Understanding Language'}, 'id': '8grsx7pzs', 'type': 'tool_call'}
+2025-07-14 00:51:10,987 [INFO] [DeepResearcher] Executing tool: extract_news_from_rss with args: {'feed_urls': ['https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml', 'https://www.technologyreview.com/feed/', 'https://venturebeat.com/category/ai/feed/', 'https://thegradient.pub/rss/'], 'threshold': 0.5, 'topic': 'AI Understanding Language'}
+
+
+2025-07-14 00:51:10,989 [INFO] [DeepResearcher] Tool Call: {'name': 'extract_news_from_rss', 'args': {'feed_urls': ['https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml', 'https://www.technologyreview.com/feed/', 'https://venturebeat.com/category/ai/feed/', 'https://thegradient.pub/rss/'], 'threshold': 0.5, 'topic': 'AI Understanding Language'}, 'id': '05krx003a', 'type': 'tool_call'}
+2025-07-14 00:51:13,947 [INFO] [Orchestrator] Invoking DeepResearcher graph...
+2025-07-14 00:51:13,948 [INFO] [DeepResearcher] Building graph...
+2025-07-14 00:51:49,894 [INFO] [DeepResearcher] Executing tool: extract_news_from_rss with args: {'feed_urls': ['https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml', 'https://www.technologyreview.com/feed/', 'https://venturebeat.com/category/ai/feed/', 'https://thegradient.pub/rss/'], 'threshold': 0.5, 'topic': 'Quantum Breakthroughs and Advances'}
+
+
+2025-07-14 00:51:49,895 [INFO] [DeepResearcher] Tool Call: {'name': 'extract_news_from_rss', 'args': {'feed_urls': ['https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml', 'https://www.technologyreview.com/feed/', 'https://venturebeat.com/category/ai/feed/', 'https://thegradient.pub/rss/'], 'threshold': 0.5, 'topic': 'Quantum Breakthroughs and Advances'}, 'id': 's0pkaqjfx', 'type': 'tool_call'}
