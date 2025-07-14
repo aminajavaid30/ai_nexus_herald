@@ -77,10 +77,8 @@ class DeepResearcher:
         """
 
         # Use the LLM to find news articles using the response from rss news extraction tool
-        logger.info("[DeepResearcher] LLM call:", state.messages, "\n\n")
+        logger.info("[DeepResearcher] Calling LLM...")
         response = self.llm.invoke(state.messages)
-
-        logger.info("[DeepResearcher] LLM response:", response, "\n\n")
         
         # If tool instructions were included, send directly to tool node
         if getattr(response, "tool_calls", None):
@@ -97,7 +95,6 @@ class DeepResearcher:
             state.news_articles = [list[Article](item.values())[0] for item in data["articles"]]
         except json.JSONDecodeError as e:
             logger.error("[DeepResearcher] Failed to parse JSON:", e)
-            logger.error("[DeepResearcher] Raw response:", response.content)
             raise e
 
         return {"messages": [response], "news_articles": state.news_articles}
@@ -117,8 +114,7 @@ class DeepResearcher:
             result = tool.invoke(tool_call["args"])
 
             # Print the tool call
-            logger.info(f"[DeepResearcher] Executing tool: {tool.name} with args: {tool_call['args']}\n\n")
-            logger.info(f"[DeepResearcher] Tool Call: {tool_call}")
+            logger.info(f"[DeepResearcher] Executing tool: {tool.name} for topic: {state.topic}")
             
             # Send the result back to the agent
             tool_messages.append(ToolMessage(

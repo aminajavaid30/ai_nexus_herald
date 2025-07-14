@@ -54,10 +54,9 @@ class NewsletterWriter:
         """
 
         # Use the LLM to find news articles using the response from rss news extraction tool
-        logger.info("[NewsletterWriter] LLM call:", state.messages, "\n\n")
+        logger.info("[NewsletterWriter] Calling LLM...")
+        logger.info("[NewsletterWriter] Generating newsletter...")
         state.newsletter = self.llm.invoke(state.messages)
-
-        logger.info("[NewsletterWriter] LLM response:", state.newsletter, "\n\n")
 
         return {"newsletter": state.newsletter}
     

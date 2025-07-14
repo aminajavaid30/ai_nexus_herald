@@ -47,7 +47,7 @@ async def generate_newsletter():
         newsletter = final_state["newsletter"]
 
         # Save the newsletter
-        save_newsletter(newsletter)
+        save_newsletter.invoke(newsletter.content)
 
         return QueryResponse(response=newsletter.content)
     except Exception as e:

@@ -5,7 +5,7 @@ A modular and scalable muti-agent system powered by **Streamlit**, **LangGraph**
 
 ## 🚀 Features
 ### Core Features
-- ✅ **Latest Trending AI News** using search tools
+- ✅ **Latest Trending AI News** using RSS feed extraction tools
 - ✅ **Multiple Agents** collaborating together
 - ✅ **Deep Research Capability** to find relevant, diverse information
 - ✅ **Flexible Prompt Engine** using structured YAML configs
@@ -30,10 +30,10 @@ A modular and scalable muti-agent system powered by **Streamlit**, **LangGraph**
 3. A well-structured AI Newsletter is generated and displayed to the user.
 
 ## Tech Stack
-- Streamlit
-- FastAPI
-- LangGraph
-- GROQ API (LLM)
+- 📊 Streamlit
+- ⚡ FastAPI
+- 🧬 LangGraph
+- 🧠 GroqAPI (LLM)
 
 ## User Interface
 <img src="resources/ai_nexus_herald.png">
@@ -57,9 +57,9 @@ GMAIL_PASSWORD=...
 ```
 
 ### 4. Initialize the backend
-Navigate to the **backend** folder and run the following command:
+Run the following command:
 ```sh
-uvicorn main:app --reload
+uvicorn src.backend.main:app --reload
 ```
 
 ### 5. Run the app

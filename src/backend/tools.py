@@ -60,10 +60,12 @@ def extract_news_from_rss(feed_urls: list[str], topic: str, threshold: float = 0
                     "similarity": score
                 })
 
-    # Select top 2 articles based on similarity score - due to LLM rate limits
-    if len(topic_articles) > 2:
-        topic_articles.sort(key=lambda x: x["similarity"], reverse=True)
-        topic_articles = topic_articles[:2]
+    # Sort articles by similarity score
+    topic_articles.sort(key=lambda x: x["similarity"], reverse=True)
+
+    # Select top 1 article based on similarity score - due to LLM rate limits
+    if len(topic_articles) > 1:
+        topic_articles = topic_articles[:1]
 
     return topic_articles
 

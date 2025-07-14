@@ -70,11 +70,9 @@ class TopicFinder:
         """
 
         # Use the LLM to find topics using the response from rss title extraction tool
-        logger.info("[TopicFinder] LLM call:", state.messages, "\n\n")
+        logger.info("[TopicFinder] Calling LLM...")
 
         response = self.llm.invoke(state.messages)
-
-        logger.info("[TopicFinder] LLM response:", response, "\n\n")
 
         # If tool instructions were included, send directly to tool node
         if getattr(response, "tool_calls", None):
@@ -87,7 +85,6 @@ class TopicFinder:
             state.topics = [list[str](item.values())[0] for item in data["topics"]]
         except json.JSONDecodeError as e:
             logger.error("[TopicFinder] Failed to parse JSON:", e)
-            logger.error("[TopicFinder] Raw response:", response.content)
             raise e
 
         return {"messages": [response], "topics": state.topics}
@@ -107,8 +104,7 @@ class TopicFinder:
             result = tool.invoke(tool_call["args"])
 
             # Print the tool call
-            logger.info(f"[TopicFinder] Executing tool: {tool.name} with args: {tool_call['args']}\n\n")
-            logger.info(f"[TopicFinder] Tool Call: {tool_call}")
+            logger.info(f"[TopicFinder] Executing tool: {tool.name}")
             
             # Send the result back to the agent
             tool_messages.append(ToolMessage(

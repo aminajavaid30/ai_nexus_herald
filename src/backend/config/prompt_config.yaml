@@ -79,6 +79,7 @@ newsletter_writer_agent_prompt:
     Informative, concise, and engaging.
   instruction: |
     Your task is to write a newsletter based on given AI news articles for topics.
+    Summarize each article in a maximum of 100 words using the summary and content provided.
     Write a newsletter in structured markdown format with a maximum of 1000 words.   
   output_constraints: |
     - Return only the newsletter as your response.
