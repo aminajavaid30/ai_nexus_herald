@@ -78,6 +78,6 @@ def save_newsletter(newsletter: str):
     news_dir = os.path.join(OUTPUTS_DIR, "newsletters")
     os.makedirs(news_dir, exist_ok=True)
 
-    filename = f"newsletter_{now}.md"
-    with open(filename, "w") as f:
+    filename = f"{news_dir}/newsletter_{now}.md"
+    with open(filename, "w", encoding="utf-8") as f:
         f.write(newsletter)

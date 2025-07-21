@@ -43,7 +43,8 @@ deep_researcher_agent_prompt:
     Informative, concise, and engaging.    
   instruction: |
     Your task is to find AI news articles related to a given topic using the available tool.
-    Call the RSS news extraction tool exactly once to extract news articles related to the given topic from RSS feeds using the provided URLs and the topic.
+    Important: You MUST use the tool to find news articles related to the given topic from RSS feeds.
+    Call the RSS news extraction tool exactly once to extract news articles related to the given topic from RSS feeds.
     Use threshold of 0.5 for similarity score in the tool call.
     If the tool returns an empty list, return a list with a dummy dictionary.
   output_constraints: |
@@ -80,17 +81,18 @@ newsletter_writer_agent_prompt:
   instruction: |
     Your task is to write a newsletter based on given AI news articles for topics.
     Summarize each article in a maximum of 100 words using the summary and content provided.
-    Write a newsletter in structured markdown format with a maximum of 1000 words.   
+    Write a newsletter in structured markdown format with a maximum of 1000 words.
+    Include links to each article in the newsletter.
   output_constraints: |
     - Return only the newsletter as your response.
     - Do not include any extra commentary or formatting in the newsletter.
     - Format the newsletter in a structured markdown format taking care of spacing, indentation, and line breaks.
     - Include appropriate emojis in the newsletter infront of each title.
-    - Do not add any extra characters inside or around the newsletter. 
+    - Do not add any extra characters inside or around the newsletter.
+    - Verify that the links to each article are correct.
   output_format: |
     - Structured Markdown format
     - Example:
-    # Newsletter Title
     ## Topic One
     ### [Article One](https://example.com/article-one)
       Summarize the article here using the summary and content provided.

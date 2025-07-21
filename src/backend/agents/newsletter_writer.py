@@ -13,6 +13,7 @@ from src.backend.agents.deep_researcher import Article
 from src.backend.utils import load_yaml_config
 from src.backend.prompt_builder import build_prompt_from_config
 from src.backend.paths import APP_CONFIG_FPATH, PROMPT_CONFIG_FPATH
+from src.backend.tools import save_newsletter
 from src.backend.logger import logger
 
 load_dotenv()
@@ -56,9 +57,15 @@ class NewsletterWriter:
         # Use the LLM to find news articles using the response from rss news extraction tool
         logger.info("[NewsletterWriter] Calling LLM...")
         logger.info("[NewsletterWriter] Generating newsletter...")
-        state.newsletter = self.llm.invoke(state.messages)
+        newsletter = self.llm.invoke(state.messages)
+
+        state.newsletter = newsletter.content
 
         return {"newsletter": state.newsletter}
+    
+    def save_newsletter(self, state: NewsletterState) -> None:
+        logger.info("[NewsletterWriter] Saving newsletter...")
+        save_newsletter.invoke(state.newsletter)
     
     # Build graph
     def build_newsletter_writer_graph(self) -> CompiledStateGraph:
@@ -67,10 +74,14 @@ class NewsletterWriter:
 
         # Register nodes
         workflow.add_node("generate_newsletter", self.generate_newsletter)
+        workflow.add_node("save_newsletter", self.save_newsletter)
         
         # Set entry point
         workflow.set_entry_point("generate_newsletter")
-        workflow.add_edge("generate_newsletter", END)
+
+        # Add the flow logic
+        workflow.add_edge("generate_newsletter", "save_newsletter")
+        workflow.add_edge("save_newsletter", END)
 
         return workflow.compile()
 
@@ -121,12 +132,10 @@ def main():
     # Add news (topics and news articles) to the system prompt
     news = "\n\nNews:\n"
     for topic, articles in received_news.items():
-        news += f"Topic: {topic} (Number of articles: {len(articles)})\n"
+        news += f"Topic: {topic}\n"
+        news += "Articles:\n"
         for article in articles:
-            news += f"Title: {article['title']}\n"
-            news += f"Link: {article['link']}\n"
-            news += f"Summary: {article['summary']}\n"
-            news += f"Content: {article['content']}\n\n"
+            news += str(article)
 
     system_prompt = build_prompt_from_config(config=newsletter_writer.newsletter_writer_prompt, input_data=news)
 

@@ -6,7 +6,6 @@ import warnings
 warnings.filterwarnings("ignore")
 
 from src.backend.agents.orchestrator import Orchestrator, OrchestratorState
-from src.backend.tools import save_newsletter
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -46,9 +45,6 @@ async def generate_newsletter():
         
         newsletter = final_state["newsletter"]
 
-        # Save the newsletter
-        save_newsletter.invoke(newsletter.content)
-
-        return QueryResponse(response=newsletter.content)
+        return QueryResponse(response=newsletter)
     except Exception as e:
         return QueryResponse(response=f"Error occurred: {str(e)}")

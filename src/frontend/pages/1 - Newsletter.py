@@ -43,6 +43,6 @@ with col2:
     st.markdown("## Here's Your AI Newsletter for this Week. Happy Reading!")
     newsletter = st.session_state.get("newsletter_content", "No newsletter generated yet.")
     if newsletter:
-        st.markdown({newsletter})
+        st.markdown(newsletter)
     else:
         st.warning("No newsletter generated yet.")
